@@ -1,0 +1,39 @@
+{
+  "name": "node-release-candidate-versioning",
+  "version": "0.1.0",
+  "description": "Version a Release or Release Candidate of an HMRC project",
+  "homepage": "http://github.com/hmrc/node-release-candidate-versioning",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hmrc/node-release-candidate-versioning.git"
+  },
+  "main": "index.js",
+  "author": {
+    "name": "HM Revenue & Customs",
+    "url": "http://hmrc.gov.uk"
+  },
+  "contributors": [
+    {
+      "name": "Rory Powis",
+      "email": "rory.powis@digital.hmrc.gov.uk"
+    }
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "git",
+    "version",
+    "versioning"
+  ],
+  "engines": {
+    "node": ">= 0.12.0",
+    "npm": ">= 2.4.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^3.1.26",
+    "eslint": "^0.24.1",
+    "tape": "^4.0.1"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  }
+}
