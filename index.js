@@ -13,3 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+export class NodeGitVersioning {
+  version(tag) {
+    if (tag) {
+      return tag;
+    }
+
+    throw new Error('You must specify a correctly formatted tag to create a release candidate from.');
+  }
+}
