@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git://github.com/hmrc/node-release-candidate-versioning.git"
   },
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": {
     "name": "HM Revenue & Customs",
     "url": "http://hmrc.gov.uk"
@@ -28,6 +28,9 @@
     "node": ">= 0.12.0",
     "npm": ">= 2.4.0"
   },
+  "dependencies": {
+    "babel": "^5.8.23",
+  },
   "devDependencies": {
     "babel-eslint": "^3.1.26",
     "babel-tape-runner": "^1.1.0",
@@ -37,6 +40,8 @@
     "tape": "^4.0.1"
   },
   "scripts": {
+    "prebuild": "rm -rf dist && mkdir dist",
+    "build": "babel --modules common index.js -o dist/index.js",
     "test": "babel-tape-runner test.js | faucet",
     "test:watch": "npm test; chokidar '**/*.js' -i 'node_modules' -c 'npm test'",
     "postinstall": "npm run build"
