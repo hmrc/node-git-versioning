@@ -15,11 +15,15 @@
  */
 
 export default class {
+  _isVersionedTag(tag) {
+    return tag.charAt(0) === 'v';
+  }
+
   version(tag) {
-    if (tag) {
+    if (tag && this._isVersionedTag(tag)) {
       return tag;
     }
 
     throw new Error('You must specify a correctly formatted tag to create a release candidate from.');
   }
-}
+};
