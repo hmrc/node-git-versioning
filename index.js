@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-export class NodeGitVersioning {
+export default class {
   version(tag) {
     if (tag) {
       return tag;
