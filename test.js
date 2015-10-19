@@ -15,8 +15,18 @@ test('Throw an exception when called with abcd123-dirty (an improperly formatted
   let nodeGitVersion = new NodeGitVersioning();
 
   t.throws(function() {
-    nodeGitVersion.version('abcd123-dirty');
+    nodeGitVersion.version('abcd123');
   });
+
+  t.end();
+});
+
+test('Return v1.0.0-0-g0000000 given v1.0.0-0-gabcd123 (same commit as the last tag)', (t) => {
+  let nodeGitVersion = new NodeGitVersioning();
+
+  var correctSha = nodeGitVersion.correctSha('v1.0.0-0-gabcd123');
+
+  t.equal(correctSha, 'v1.0.0-0-g0000000');
 
   t.end();
 });
