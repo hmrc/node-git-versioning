@@ -30,3 +30,13 @@ test('Return v1.0.0-0-g0000000 given v1.0.0-0-gabcd123 (same commit as the last 
 
   t.end();
 });
+
+test('Return 1.0.0-1-gabcd123 given v1.0.0-1-gabcd123 (strip the \'v\')', (t) => {
+  let nodeGitVersion = new NodeGitVersioning();
+
+  var version = nodeGitVersion.version('v1.0.0-1-gabcd123');
+
+  t.equal(version, '1.0.0-1-gabcd123');
+
+  t.end();
+});

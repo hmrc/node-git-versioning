@@ -19,6 +19,10 @@ export default class {
     return tag.charAt(0) === 'v';
   }
 
+  stripV(tag) {
+    return tag.slice(1);
+  }
+
   correctSha(tag) {
     let tagParts = tag.split('-');
     console.log('tagParts ', tagParts);
@@ -31,8 +35,8 @@ export default class {
   }
 
   version(tag) {
-    if (tag && isVersionedTag(tag)) {
-      return correctSha(tag);
+    if (tag && this.isVersionedTag(tag)) {
+      return this.stripV(this.correctSha(tag));
     }
 
     throw new Error('You must specify a correctly formatted tag to create a release candidate from.');
