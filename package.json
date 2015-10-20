@@ -29,7 +29,7 @@
     "npm": ">= 2.4.0"
   },
   "dependencies": {
-    "babel": "^5.8.23",
+    "babel": "^5.8.23"
   },
   "devDependencies": {
     "babel-eslint": "^3.1.26",
