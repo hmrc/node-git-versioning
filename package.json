@@ -34,17 +34,17 @@
     "babel-preset-env": "^1.4.0"
   },
   "devDependencies": {
-    "babel-eslint": "^3.1.26",
     "babel-tape-runner": "^1.1.0",
     "chokidar-cli": "^1.0.1",
-    "eslint": "^1.1.0",
     "faucet": "0.0.1",
+    "standard": "^10.0.2",
     "tape": "^4.0.1"
   },
   "scripts": {
     "prebuild": "rm -rf dist && mkdir dist",
-    "build": "babel index.js -o dist/index.js",
-    "test": "babel-tape-runner test.js | faucet",
+    "build": "npm run lint && babel index.js -o dist/index.js",
+    "lint": "standard",
+    "test": "npm run lint && babel-tape-runner test.js | faucet",
     "test:watch": "npm test; chokidar '**/*.js' -i 'node_modules' -c 'npm test'",
     "postinstall": "npm run build"
   }

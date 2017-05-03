@@ -15,30 +15,30 @@
  */
 
 export default class {
-  isVersionedTag(tag) {
-    return tag.charAt(0) === 'v';
+  isVersionedTag (tag) {
+    return tag.charAt(0) === 'v'
   }
 
-  stripV(tag) {
-    return tag.slice(1);
+  stripV (tag) {
+    return tag.slice(1)
   }
 
-  correctSha(tag) {
-    let tagParts = tag.split('-');
-    console.log('tagParts ', tagParts);
+  correctSha (tag) {
+    let tagParts = tag.split('-')
+    console.log('tagParts ', tagParts)
 
     if (tagParts[1] === '0') {
-      tagParts[2] = 'g0000000';
+      tagParts[2] = 'g0000000'
     }
 
-    return tagParts.join('-');
+    return tagParts.join('-')
   }
 
-  version(tag) {
+  version (tag) {
     if (tag && this.isVersionedTag(tag)) {
-      return this.stripV(this.correctSha(tag));
+      return this.stripV(this.correctSha(tag))
     }
 
-    throw new Error('You must specify a correctly formatted tag to create a release candidate from.');
+    throw new Error('You must specify a correctly formatted tag to create a release candidate from.')
   }
 };
