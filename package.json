@@ -2,10 +2,10 @@
   "name": "node-git-versioning",
   "version": "0.1.0",
   "description": "Version a Release or Release Candidate of an HMRC project",
-  "homepage": "http://github.com/hmrc/node-release-candidate-versioning",
+  "homepage": "http://github.com/hmrc/node-git-versioning",
   "repository": {
     "type": "git",
-    "url": "git://github.com/hmrc/node-release-candidate-versioning.git"
+    "url": "git://github.com/hmrc/node-git-versioning.git"
   },
   "main": "dist/index.js",
   "author": {
@@ -22,11 +22,12 @@
   "keywords": [
     "git",
     "version",
-    "versioning"
+    "versioning",
+    "HMRC"
   ],
   "engines": {
-    "node": ">= 0.12.0",
-    "npm": ">= 2.4.0"
+    "node": "4.4.5",
+    "npm": ">= 2.15.5"
   },
   "dependencies": {
     "babel": "^5.8.23"
