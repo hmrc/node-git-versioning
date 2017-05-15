@@ -34,7 +34,7 @@
     "babel-preset-env": "^1.4.0"
   },
   "devDependencies": {
-    "babel-tape-runner": "^1.1.0",
+    "babel-tape-runner": "^2.0.0",
     "chokidar-cli": "^1.0.1",
     "faucet": "0.0.1",
     "standard": "^10.0.2",
