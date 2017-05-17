@@ -15,7 +15,7 @@
  */
 
 import test from 'tape'
-import { version } from './index'
+import { version } from '../index'
 
 test('Throw an exception when called without a tag', (t) => {
   t.throws(function () {

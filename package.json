@@ -44,7 +44,7 @@
     "prebuild": "rm -rf dist && mkdir dist",
     "build": "npm run lint && babel index.js -o dist/index.js",
     "lint": "standard",
-    "test": "npm run lint && babel-tape-runner test.js | faucet",
+    "test": "npm run lint && babel-tape-runner test/*.js | faucet",
     "test:watch": "npm test; chokidar '**/*.js' -i 'node_modules' -c 'npm test'",
     "postinstall": "npm run build"
   }
