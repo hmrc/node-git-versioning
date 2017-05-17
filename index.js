@@ -14,31 +14,31 @@
  * limitations under the License.
  */
 
-export default class {
-  isVersionedTag (tag) {
-    return tag.charAt(0) === 'v'
+const isVersionedTag = (tag) => {
+  return tag.charAt(0) === 'v'
+}
+
+const stripV = (tag) => {
+  return tag.slice(1)
+}
+
+const correctSha = (tag) => {
+  let tagParts = tag.split('-')
+  console.log('tagParts ', tagParts)
+
+  if (tagParts[1] === '0') {
+    tagParts[2] = 'g0000000'
   }
 
-  stripV (tag) {
-    return tag.slice(1)
+  return tagParts.join('-')
+}
+
+const version = (tag) => {
+  if (tag && isVersionedTag(tag)) {
+    return stripV(correctSha(tag))
   }
 
-  correctSha (tag) {
-    let tagParts = tag.split('-')
-    console.log('tagParts ', tagParts)
+  throw new Error('You must specify a correctly formatted tag to create a release candidate from.')
+}
 
-    if (tagParts[1] === '0') {
-      tagParts[2] = 'g0000000'
-    }
-
-    return tagParts.join('-')
-  }
-
-  version (tag) {
-    if (tag && this.isVersionedTag(tag)) {
-      return this.stripV(this.correctSha(tag))
-    }
-
-    throw new Error('You must specify a correctly formatted tag to create a release candidate from.')
-  }
-};
+export { version }
