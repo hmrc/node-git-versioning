@@ -16,7 +16,7 @@
 
 import path from 'path'
 import test from 'tape'
-import { execFileSync } from 'child_process'
+import { spawnSync } from 'child_process'
 import suiteName from './utils/suite'
 import gitDescribe from '../lib/git-describe'
 
@@ -33,15 +33,9 @@ test(`${suite} Fail if the given path is not a git repo`, (t) => {
 })
 
 test(`${suite} Return the sha of the parent repo if not given a path`, (t) => {
-  const execArgs = [
-    'describe',
-    '--long',
-    '--always'
-  ]
-
-  const parentSha = execFileSync('git', execArgs)
+  const parentSha = spawnSync('git', ['describe', '--long', '--always'])
   const sha = gitDescribe()
 
-  t.equal(parentSha.toString('utf-8').trim(), sha)
+  t.equal(parentSha.stdout.toString('utf-8').trim(), sha)
   t.end()
 })
