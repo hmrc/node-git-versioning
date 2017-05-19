@@ -17,7 +17,12 @@
 import test from 'tape'
 import { version } from '../index'
 
-test('Throw an exception when called without a tag', (t) => {
+const suite = `${__filename.substring(
+  __filename.lastIndexOf('/') + 1,
+  __filename.lastIndexOf('.')
+)}:`
+
+test(`${suite} Throw an exception when called without a tag`, (t) => {
   t.throws(function () {
     version()
   })
@@ -25,7 +30,7 @@ test('Throw an exception when called without a tag', (t) => {
   t.end()
 })
 
-test('Throw an exception when called with abcd123-dirty (an improperly formatted tag)', (t) => {
+test(`${suite} Throw an exception when called with abcd123-dirty (an improperly formatted tag)`, (t) => {
   t.throws(function () {
     version('abcd123-dirty')
   })
@@ -33,7 +38,7 @@ test('Throw an exception when called with abcd123-dirty (an improperly formatted
   t.end()
 })
 
-test('Return 1.0.0-1-gabcd123 given v1.0.0-1-gabcd123 (strip the \'v\')', (t) => {
+test(`${suite} Return 1.0.0-1-gabcd123 given v1.0.0-1-gabcd123 (strip the 'v')`, (t) => {
   var formattedVersion = version('v1.0.0-1-gabcd123')
 
   t.equal(formattedVersion, '1.0.0-1-gabcd123')
@@ -41,7 +46,7 @@ test('Return 1.0.0-1-gabcd123 given v1.0.0-1-gabcd123 (strip the \'v\')', (t) =>
   t.end()
 })
 
-test('Return 1.0.0-0-g0000000 given v1.0.0-0-gabcd123 (same commit as the last tag)', (t) => {
+test(`${suite} Return 1.0.0-0-g0000000 given v1.0.0-0-gabcd123 (same commit as the last tag)`, (t) => {
   var formattedVersion = version('v1.0.0-0-gabcd123')
 
   t.equal(formattedVersion, '1.0.0-0-g0000000')

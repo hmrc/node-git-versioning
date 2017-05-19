@@ -24,7 +24,6 @@ const stripV = (tag) => {
 
 const correctSha = (tag) => {
   let tagParts = tag.split('-')
-  console.log('tagParts ', tagParts)
 
   if (tagParts[1] === '0') {
     tagParts[2] = 'g0000000'
