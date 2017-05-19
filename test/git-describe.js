@@ -17,12 +17,10 @@
 import path from 'path'
 import test from 'tape'
 import { execFileSync } from 'child_process'
+import suiteName from './utils/suite'
 import gitDescribe from '../lib/git-describe'
 
-const suite = `${__filename.substring(
-  __filename.lastIndexOf('/') + 1,
-  __filename.lastIndexOf('.')
-)}:`
+const suite = suiteName(__filename)
 
 const repoDir = path.join(__dirname, 'test-repo')
 

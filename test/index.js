@@ -15,12 +15,10 @@
  */
 
 import test from 'tape'
+import suiteName from './utils/suite'
 import { version } from '../index'
 
-const suite = `${__filename.substring(
-  __filename.lastIndexOf('/') + 1,
-  __filename.lastIndexOf('.')
-)}:`
+const suite = suiteName(__filename)
 
 test(`${suite} Throw an exception when called without a tag`, (t) => {
   t.throws(function () {
