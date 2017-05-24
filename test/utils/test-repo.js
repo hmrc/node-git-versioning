@@ -43,6 +43,10 @@ class TestRepo {
     this.execGit('add', '.')
     this.execGit('commit', '--message', '"Initial commit"')
   }
+
+  tag (version) {
+    this.execGit('tag', '-a', version, '-m', version)
+  }
 }
 
 export default TestRepo

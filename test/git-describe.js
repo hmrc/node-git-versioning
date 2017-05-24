@@ -44,13 +44,24 @@ test(`${suite} Return the sha of the parent repo if not given a path`, (t) => {
   t.end()
 })
 
-test(`${suite} Prepends 0.0.0 and the commit count if the repo has no tags`, (t) => {
+test(`${suite} Prepend 0.0.0 and the commit count if the repo has no tags`, (t) => {
   repo.init()
   repo.initialCommit()
 
   const sha = gitDescribe(repoDir)
-
   t.ok(sha.includes('0.0.0-1-g'))
+
+  repo.clean()
+  t.end()
+})
+
+test.only(`${suite} Return the tag and commit count for a tagged repo`, (t) => {
+  repo.init()
+  repo.initialCommit()
+  repo.tag('1.0.0')
+
+  const sha = gitDescribe(repoDir)
+  t.ok(sha.includes('1.0.0-0-g'))
 
   repo.clean()
   t.end()
