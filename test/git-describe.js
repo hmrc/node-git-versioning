@@ -22,12 +22,12 @@ import gitDescribe from '../lib/git-describe'
 
 const suite = suiteName(__filename)
 
-const repoDir = path.join(__dirname, 'test-repo')
-
 test(`${suite} Fail if the given path is not a git repo`, (t) => {
+  const fsRoot = __dirname.substring(0, __dirname.indexOf(path.sep) + 1)
+
   t.throws(function () {
-    gitDescribe(repoDir)
-  }, new RegExp(/fatal: Not a git repository:/))
+    gitDescribe(fsRoot)
+  }, new RegExp(/Not a git repository/))
 
   t.end()
 })
