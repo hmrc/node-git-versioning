@@ -51,3 +51,27 @@ test(`${suite} Return 1.0.0-0-g0000000 given v1.0.0-0-gabcd123 (same commit as t
 
   t.end()
 })
+
+test(`${suite} Return 1.0.0-40-gabcd123 given release/1.0.0-40-gabcd123 (a grouped tag)`, (t) => {
+  var formattedVersion = formatVersion('release/1.0.0-40-gabcd123')
+
+  t.equal(formattedVersion, '1.0.0-40-gabcd123')
+
+  t.end()
+})
+
+test(`${suite} Return 1.0.0-40-gabcd123 given release/v1.0.0-40-gabcd123 (a grouped tag with 'v')`, (t) => {
+  var formattedVersion = formatVersion('release/v1.0.0-40-gabcd123')
+
+  t.equal(formattedVersion, '1.0.0-40-gabcd123')
+
+  t.end()
+})
+
+test(`${suite} Return 1.0.0-40-gabcd123 given 1.0.0-40-gabcd123 (ancorrectly formatted tag)`, (t) => {
+  var formattedVersion = formatVersion('1.0.0-40-gabcd123')
+
+  t.equal(formattedVersion, '1.0.0-40-gabcd123')
+
+  t.end()
+})
