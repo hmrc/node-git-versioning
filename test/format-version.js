@@ -16,28 +16,28 @@
 
 import test from 'tape'
 import suiteName from './utils/suite'
-import { version } from '../index'
+import formatVersion from '../lib/format-version'
 
 const suite = suiteName(__filename)
 
 test(`${suite} Throw an exception when called without a tag`, (t) => {
   t.throws(function () {
-    version()
+    formatVersion()
   })
 
   t.end()
 })
 
-test(`${suite} Throw an exception when called with abcd123-dirty (an improperly formatted tag)`, (t) => {
+test(`${suite} Throw an exception when called with abcd123 (an improperly formatted tag)`, (t) => {
   t.throws(function () {
-    version('abcd123-dirty')
+    formatVersion('abcd123')
   })
 
   t.end()
 })
 
 test(`${suite} Return 1.0.0-1-gabcd123 given v1.0.0-1-gabcd123 (strip the 'v')`, (t) => {
-  var formattedVersion = version('v1.0.0-1-gabcd123')
+  var formattedVersion = formatVersion('v1.0.0-1-gabcd123')
 
   t.equal(formattedVersion, '1.0.0-1-gabcd123')
 
@@ -45,7 +45,7 @@ test(`${suite} Return 1.0.0-1-gabcd123 given v1.0.0-1-gabcd123 (strip the 'v')`,
 })
 
 test(`${suite} Return 1.0.0-0-g0000000 given v1.0.0-0-gabcd123 (same commit as the last tag)`, (t) => {
-  var formattedVersion = version('v1.0.0-0-gabcd123')
+  var formattedVersion = formatVersion('v1.0.0-0-gabcd123')
 
   t.equal(formattedVersion, '1.0.0-0-g0000000')
 
