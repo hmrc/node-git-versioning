@@ -2,3 +2,5 @@ sudo: false
 language: node_js
 node_js:
   - "4.4.5"
+before_script:
+  - "git symbolic-ref HEAD refs/heads/$TRAVIS_BRANCH"
