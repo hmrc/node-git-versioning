@@ -39,9 +39,9 @@ class TestRepo {
     rimraf.sync(path.join(this.dir, '.git'))
   }
 
-  initialCommit () {
+  commit (message) {
     this.execGit('add', '.')
-    this.execGit('commit', '--message', '"Initial commit"')
+    this.execGit('commit', '--message', `"${message}"`)
   }
 
   tag (version) {
