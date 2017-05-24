@@ -17,10 +17,12 @@
 import path from 'path'
 import rimraf from 'rimraf'
 import { spawnSync } from 'child_process'
+import { writeFileSync } from 'fs'
 
 class TestRepo {
   constructor (dir) {
     this.dir = path.normalize(dir)
+    this.file = path.join(this.dir, 'test')
   }
 
   execGit () {
@@ -31,12 +33,17 @@ class TestRepo {
     return git
   }
 
+  clean () {
+    rimraf.sync(path.join(this.dir, '.git'))
+    rimraf.sync(this.file)
+  }
+
   init () {
     this.execGit('init')
   }
 
-  clean () {
-    rimraf.sync(path.join(this.dir, '.git'))
+  makeChange () {
+    writeFileSync(this.file, 'test')
   }
 
   commit (message) {

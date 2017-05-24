@@ -55,13 +55,24 @@ test(`${suite} Prepend 0.0.0 and the commit count if the repo has no tags`, (t) 
   t.end()
 })
 
-test.only(`${suite} Return the tag and commit count for a tagged repo`, (t) => {
+test(`${suite} Return the tag and commit count for a tagged repo`, (t) => {
   repo.init()
   repo.commit('Initial commit')
   repo.tag('1.0.0')
 
-  const sha = gitDescribe(repoDir)
-  t.ok(sha.includes('1.0.0-0-g'))
+  const sha1 = gitDescribe(repoDir)
+  t.ok(sha1.includes('1.0.0-0-g'), 'Tagged as 1.0.0')
+
+  repo.makeChange()
+  repo.commit('Another commit')
+
+  const sha2 = gitDescribe(repoDir)
+  t.ok(sha2.includes('1.0.0-1-g'), 'Commit count reflects change')
+
+  repo.tag('1.1.0')
+
+  const sha3 = gitDescribe(repoDir)
+  t.ok(sha3.includes('1.1.0-0-g'), 'Tagged as 1.1.0')
 
   repo.clean()
   t.end()
