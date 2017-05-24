@@ -37,6 +37,7 @@
     "babel-tape-runner": "^2.0.0",
     "chokidar-cli": "^1.0.1",
     "faucet": "0.0.1",
+    "rimraf": "^2.6.1",
     "standard": "^10.0.2",
     "tape": "^4.0.1"
   },

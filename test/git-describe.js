@@ -18,9 +18,13 @@ import path from 'path'
 import test from 'tape'
 import { spawnSync } from 'child_process'
 import suiteName from './utils/suite'
+import TestRepo from './utils/test-repo'
 import gitDescribe from '../lib/git-describe'
 
 const suite = suiteName(__filename)
+
+const repoDir = path.join(__dirname, 'test-repo')
+const repo = new TestRepo(repoDir)
 
 test(`${suite} Fail if the given path is not a git repo`, (t) => {
   const fsRoot = __dirname.substring(0, __dirname.indexOf(path.sep) + 1)
@@ -36,6 +40,18 @@ test(`${suite} Return the sha of the parent repo if not given a path`, (t) => {
   const parentSha = spawnSync('git', ['describe', '--long', '--always'])
   const sha = gitDescribe()
 
-  t.equal(parentSha.stdout.toString('utf-8').trim(), sha)
+  t.ok(sha.includes(parentSha.stdout.toString('utf-8').trim()))
+  t.end()
+})
+
+test(`${suite} Prepends 0.0.0 and the commit count if the repo has no tags`, (t) => {
+  repo.init()
+  repo.initialCommit()
+
+  const sha = gitDescribe(repoDir)
+
+  t.ok(sha.includes('0.0.0-1-g'))
+
+  repo.clean()
   t.end()
 })
