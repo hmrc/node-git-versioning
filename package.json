@@ -30,22 +30,20 @@
     "npm": ">= 2.15.5"
   },
   "dependencies": {
-    "babel-cli": "^6.24.1",
+    "babel-register": "^6.24.1",
     "babel-preset-env": "^1.4.0",
+    "rollup": "^0.56.4",
     "standard": "^10.0.2"
   },
   "devDependencies": {
-    "babel-tape-runner": "^2.0.0",
     "chokidar-cli": "^1.0.1",
     "faucet": "0.0.1",
-    "rimraf": "^2.6.1",
     "tape": "^4.0.1"
   },
   "scripts": {
-    "prebuild": "rm -rf dist && mkdir dist",
-    "build": "npm run lint && babel index.js -o dist/index.js",
+    "build": "npm run lint && rollup -c",
     "lint": "standard",
-    "test": "npm run lint && babel-tape-runner test/*.js | faucet",
+    "test": "tape -r babel-register test/*.js",
     "test:watch": "npm test; chokidar '**/*.js' -i 'node_modules' -c 'npm test'",
     "postinstall": "npm run build"
   }
