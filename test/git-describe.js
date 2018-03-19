@@ -30,7 +30,7 @@ test(`${suite} Fail if the given path is not a git repo`, (t) => {
   const fsRoot = __dirname.substring(0, __dirname.indexOf(path.sep) + 1)
 
   t.throws(function () {
-    gitDescribe(fsRoot)
+    gitDescribe(undefined, fsRoot)
   }, new RegExp(/Not a git repository/))
 
   t.end()
@@ -48,7 +48,7 @@ test(`${suite} Prepend 0.0.0 and the commit count if the repo has no tags`, (t) 
   repo.init()
   repo.commit('Initial commit')
 
-  const sha = gitDescribe(repoDir)
+  const sha = gitDescribe(undefined, repoDir)
   t.ok(sha.includes('0.0.0-1-g'))
 
   repo.clean()
@@ -60,19 +60,35 @@ test(`${suite} Return the tag and commit count for a tagged repo`, (t) => {
   repo.commit('Initial commit')
   repo.tag('1.0.0')
 
-  const sha1 = gitDescribe(repoDir)
+  const sha1 = gitDescribe(undefined, repoDir)
   t.ok(sha1.includes('1.0.0-0-g'), 'Tagged as 1.0.0')
 
   repo.makeChange()
   repo.commit('Another commit')
 
-  const sha2 = gitDescribe(repoDir)
+  const sha2 = gitDescribe(undefined, repoDir)
   t.ok(sha2.includes('1.0.0-1-g'), 'Commit count reflects change')
 
   repo.tag('1.1.0')
 
-  const sha3 = gitDescribe(repoDir)
+  const sha3 = gitDescribe(undefined, repoDir)
   t.ok(sha3.includes('1.1.0-0-g'), 'Tagged as 1.1.0')
+
+  repo.clean()
+  t.end()
+})
+
+test(`${suite} Return the tag and commit count for a given regex`, (t) => {
+  repo.init()
+  repo.commit('Initial commit')
+  repo.tag('1.0.0')
+  repo.tag('2.0.0')
+
+  const sha1 = gitDescribe('1.*', repoDir)
+  t.ok(sha1.includes('1.0.0-0-g'), 'Tagged as 1.0.0')
+
+  const sha2 = gitDescribe('2.*', repoDir)
+  t.ok(sha2.includes('2.0.0-0-g'), 'Tagged as 2.0.0')
 
   repo.clean()
   t.end()
