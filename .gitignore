@@ -57,3 +57,4 @@ node_modules
 
 # Project specific files and directories
 dist/
+*.tgz
