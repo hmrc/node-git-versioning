@@ -44,7 +44,6 @@
     "build": "rollup -c",
     "lint": "standard",
     "test": "npm run lint && tape -r babel-register test/*.js",
-    "test:watch": "npm test; chokidar '**/*.js' -i 'node_modules' -c 'npm test'",
-    "postinstall": "npm run build"
+    "test:watch": "npm test; chokidar '**/*.js' -i 'node_modules' -c 'npm test'"
   }
 }
