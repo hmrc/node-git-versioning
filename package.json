@@ -1,5 +1,5 @@
 {
-  "name": "node-git-versioning",
+  "name": "@hmrc/node-git-versioning",
   "version": "0.1.0",
   "description": "Version a Release or Release Candidate of an HMRC project",
   "homepage": "http://github.com/hmrc/node-git-versioning",
@@ -25,10 +25,6 @@
     "versioning",
     "HMRC"
   ],
-  "engines": {
-    "node": ">= 4.4.5",
-    "npm": ">= 2.15.5"
-  },
   "dependencies": {
     "babel-register": "^6.24.1",
     "babel-preset-env": "^1.4.0",
