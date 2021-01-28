@@ -1,3 +1,5 @@
+DEPRECATED: THIS REPO IS NO LONGER MAINTAINED
+
 # node-git-versioning
 
 [![Build Status](https://travis-ci.org/hmrc/node-git-versioning.svg?branch=master)](https://travis-ci.org/hmrc/node-git-versioning) [ ![Download](https://api.bintray.com/packages/hmrc/releases/node-git-versioning/images/download.svg) ](https://bintray.com/hmrc/releases/node-git-versioning/_latestVersion)
